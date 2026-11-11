@@ -1,0 +1,56 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+base {
+	archivesName = 'steamu-companion'
+}
+
+repositories {
+	maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	// Optional: a "Configure" button in Mod Menu (not required at runtime)
+	compileOnly "com.terraformersmc:modmenu:21.0.0"
+}
+
+// Scripted in-game test (./gradlew runClientGameTest): creates a survival
+// world with a known inventory so the Deck UI can be checked end to end.
+fabricApi {
+	configureTests {
+		createSourceSet = true
+		modId = "steamu_companion_test"
+		enableGameTests = false
+		enableClientGameTests = true
+		eula = true
+	}
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+	withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_steamu-companion" }
+	}
+}

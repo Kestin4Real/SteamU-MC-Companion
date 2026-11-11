@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "steamu_companion",
+	"version": "${version}",
+	"name": "SteamU Companion",
+	"description": "Turns a Steam Deck connected with SteamU into a Wii U-style second screen: inventory, crafting and chests by touch, live vitals, and play with the Deck's own controls (gyro aiming, remappable buttons).",
+	"authors": [
+		"Kestin"
+	],
+	"contact": {
+		"homepage": "https://github.com/Kestin4Real/SteamU-MC-Companion",
+		"sources": "https://github.com/Kestin4Real/SteamU-MC-Companion",
+		"issues": "https://github.com/Kestin4Real/SteamU-MC-Companion/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/steamu_companion/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"be.voidguardians.steamu.SteamUCompanion"
+		],
+		"modmenu": [
+			"be.voidguardians.steamu.compat.ModMenuIntegration"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"mixins": [
+		"steamu_companion.mixins.json"
+	],
+	"suggests": {
+		"modmenu": "*"
+	}
+}
