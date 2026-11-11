@@ -123,4 +123,4 @@ in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
 ## License
 
-MIT
+[MIT](LICENSE)
